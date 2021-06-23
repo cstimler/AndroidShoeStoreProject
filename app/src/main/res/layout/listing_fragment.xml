@@ -16,12 +16,43 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="match_parent"
+                android:layout_width= "0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Placeholder for List"
                 android:textAlignment="center"
                 android:textStyle="bold" />
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+
+            <!--https://www.geeksforgeeks.org/theming-floating-action-button-with-bottom-navigation-bar-in-android/-->
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottomAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@android:color/white"
+                android:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@android:color/white"
+                app:fabCradleMargin="10dp"
+                app:fabCradleRoundedCornerRadius="10dp"
+                app:fabCradleVerticalOffset="10dp" />
+
+            <!--the normal Floating action button which is
+                anchored to the bottom navigation button-->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:contentDescription="@string/app_name"
+                app:backgroundTint="@color/colorAccent"
+                app:layout_anchor="@id/bottomAppBar"
+                app:srcCompat="@drawable/ic_add" />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </LinearLayout>
 
 
