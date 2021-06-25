@@ -57,7 +57,7 @@ class DetailFragment : Fragment() {
         model.company.value = binding.companyText.text.toString()
         model.description.value = binding.descriptionText.text.toString()
         val nextShoe = Shoe(binding.shoeNameText.text.toString(),
-            (binding.shoeSizeText.text.toString().toDoubleOrNull() ?: 0) as Double, binding.companyText.text.toString(), binding.descriptionText.text.toString())
+            (binding.shoeSizeText.text.toString().toDoubleOrNull() ?: 0.0) as Double, binding.companyText.text.toString(), binding.descriptionText.text.toString())
         saveShoe(nextShoe)
         // view: View -> view.findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToListingFragment())
     }

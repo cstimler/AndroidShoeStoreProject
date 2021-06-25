@@ -57,9 +57,9 @@ class ListingFragment : Fragment() {
         if (bar == null) {
             Log.i("GetActivity", "bar is null")
         }
-        binding.fab.setOnClickListener {
-            view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
-        }
+      //  binding.fab.setOnClickListener {
+     //       view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
+    //    }
        // binding.myTextView.text = model.name.value.toString()
 
         // add some stuff:
@@ -119,9 +119,9 @@ class ListingFragment : Fragment() {
           //  }
             // setContentView(ll)
         }
-        (view as? ViewGroup)?.let {
-           buttonView = View.inflate(context, R.layout.floating_button, it)
-        }
+  //      (view as? ViewGroup)?.let {
+   //        buttonView = View.inflate(context, R.layout.floating_button, it)
+  //      }
         val scroll: ScrollView = ScrollView(context)
         scroll.setLayoutParams(
             ViewGroup.LayoutParams(
@@ -129,21 +129,41 @@ class ListingFragment : Fragment() {
                 LinearLayout.LayoutParams.MATCH_PARENT
             )
         )
-
+        // spacer for top navbar:
+        var textView: TextView = TextView(context)
+        textView.text=""
+        textView.height = 100
+        textView.width = 100
+        lastView.myLinearLayout.addView(textView)
         for (shoe in model.listOfShoes) {
-            var textView:TextView = TextView(context)
-            textView.text = shoe.name
-            textView.height = 1000
+
+            var textView: TextView = TextView(context)
+            textView.text = "Name: " + shoe.name
+            textView.height = 100
             textView.width = 1000
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
-            //  getView()?.invalidate()
+            // getView()?.invalidate()
             lastView.myLinearLayout.addView(textView)
+            var textView2: TextView = TextView(context)
+            textView2.text = "Size: " + shoe.size.toString()
+            textView2.height = 100
+            textView2.width = 1000
+            textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
+            lastView.myLinearLayout.addView(textView2)
+
+            var textView3: TextView = TextView(context)
+            textView3.text=""
+            textView3.height = 100
+            textView3.width = 100
+            lastView.myLinearLayout.addView(textView3)
         }
+
         var actionButton: FloatingActionButton = FloatingActionButton(context)
+        actionButton.setImageResource(R.drawable.ic_add)
         lastView.myLinearLayout.addView(actionButton)
-        buttonView.fab2.setOnClickListener {
-                view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
-        }
+    //    buttonView.fab2.setOnClickListener {
+     //           view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
+    //    }
        actionButton.setOnClickListener {
                 view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
         }
