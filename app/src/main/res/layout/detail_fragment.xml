@@ -4,22 +4,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="sharedViewModel"
+            type="com.udacity.shoestore.models.shared.SharedViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/shoeNameText"
+            android:id="@+id/shoeNameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Shoe Name:"
             android:textSize="24sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/shoeNameLabel"
+            app:layout_constraintBaseline_toBaselineOf="@+id/shoeNameText"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/shoeNameLabel"
+            android:id="@+id/shoeNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -28,7 +34,7 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/shoeNameText"
+            app:layout_constraintStart_toEndOf="@+id/shoeNameLabel"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.19999999" />
 
@@ -39,7 +45,7 @@
             android:text="Shoe Size:"
             android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/shoeSizeText"
-            app:layout_constraintEnd_toEndOf="@+id/shoeNameText" />
+            app:layout_constraintEnd_toEndOf="@+id/shoeNameLabel" />
 
         <EditText
             android:id="@+id/shoeSizeText"
