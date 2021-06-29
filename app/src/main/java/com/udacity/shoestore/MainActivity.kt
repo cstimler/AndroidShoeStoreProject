@@ -35,4 +35,11 @@ class MainActivity : AppCompatActivity() {
         // return navController.navigateUp()
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
+/*
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
+    */
+
 }

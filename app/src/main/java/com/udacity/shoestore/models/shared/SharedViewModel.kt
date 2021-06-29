@@ -1,33 +1,42 @@
 package com.udacity.shoestore.models.shared
 
-import androidx.lifecycle.LiveData
+import android.widget.EditText
+import android.widget.TextView
+import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseMethod
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.models.Shoe
 
-class SharedViewModel : ViewModel() {
 
-    val name: MutableLiveData<String> = MutableLiveData<String>()
-    val size: MutableLiveData<Double> = MutableLiveData<Double>()
-    val company: MutableLiveData<String> = MutableLiveData<String>()
-    val description: MutableLiveData<String> = MutableLiveData<String>()
-    var nextShoe: MutableLiveData<Shoe> = MutableLiveData<Shoe>()
+class SharedViewModel : ViewModel() {
+    var shoeName: MutableLiveData<String> = MutableLiveData<String>()
+    var shoeSize: MutableLiveData<Double> = MutableLiveData<Double>()
+    var shoeCompany: MutableLiveData<String> = MutableLiveData<String>()
+    var shoeDescription: MutableLiveData<String> = MutableLiveData<String>()
     val listOfShoes = mutableListOf<Shoe>()
 
+
 init {
-    name.value = "test"
-    size.value = 0.5
-    company.value = "Nike"
-    description.value = "comfortable"
+    // needs this not to crash!
+    shoeSize.value = 0.0
 }
 
 
-/*
-    private val _description = MutableLiveData<String>()
-    val description: LiveData<String>
-        get() = _description
-*/
 
-
-
+// takes bound data, incorporates it into a new Shoe object, then stores it in a Mutable List
+fun addShoe() {
+    var newShoe = Shoe(shoeName.value.toString(), shoeSize.value.toString().toDoubleOrNull() ?: 0.0 as Double, shoeCompany.value.toString(), shoeDescription.value.toString())
+    listOfShoes.add(newShoe)
+    wipeVariablesClean()
 }
+// prevents old data from being displayed in the detail view
+    fun wipeVariablesClean() {
+        shoeName.value = ""
+        shoeSize.value = 0.0
+        shoeCompany.value = ""
+        shoeDescription.value = ""
+    }
+}
+

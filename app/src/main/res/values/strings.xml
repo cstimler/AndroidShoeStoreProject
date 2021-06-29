@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">ShoeStore</string>
+    <string name="instructions">These are the instructions that you should follow: \n 1) First keep on track. \n 2) Second proceed to the Listing Screen. \n 3) Third press the floating button. \n 4) Enter in as many shoes as you want to!!</string>
+    <string name="instructions_more">Here are some more instructions: \n HAVE FUN!!!</string>
+    <string name="listing"><![CDATA[Listing ->]]></string>
+    <string name="shoe_name">Shoe Name:</string>
+    <string name="enter_shoe_name">Enter shoe name</string>
+    <string name="shoe_size">Shoe Size:</string>
+    <string name="enter_shoe_size">Enter shoe size</string>
+    <string name="company">Company:</string>
+    <string name="enter_company">Enter company</string>
+    <string name="description">Description:</string>
+    <string name="enter_description">Enter description</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="enter_email">Please enter your email address below:</string>
+    <string name="enter_password">Please enter your password below:</string>
+    <string name="my_email">My Email</string>
+    <string name="existing_login">Existing Login</string>
+    <string name="create_a_new_login">Create A New Login</string>
+    <string name="welcome1">Welcome to the Shoe Store App!!</string>
+    <string name="welcome2">It\'s great to have you here!</string>
+    <string name="double_format">%f</string>
+    <string name="go_to_instructions"><![CDATA[Instructions ->]]></string>
+    <string name="sample_text">SAMPLE TEXT</string>
 </resources>

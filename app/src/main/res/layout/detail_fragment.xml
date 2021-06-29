@@ -8,7 +8,12 @@
         <variable
             name="sharedViewModel"
             type="com.udacity.shoestore.models.shared.SharedViewModel" />
+        <variable
+            name="converter"
+            type="com.udacity.shoestore.models.Converter"/>
     </data>
+<!-- I found that the constraint layout was superior to the linear layout in order to keep the baselines
+level, line up label texts, and proportionally space the different fields correctly to give an aesthetic appeal -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Shoe Name:"
+            android:text="@string/shoe_name"
             android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/shoeNameText"
             app:layout_constraintStart_toStartOf="parent" />
@@ -30,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Enter shoe name"
+            android:hint="@string/enter_shoe_name"
+            android:text="@={sharedViewModel.shoeName}"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,18 +48,20 @@
             android:id="@+id/shoeSizeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shoe Size:"
+            android:text="@string/shoe_size"
             android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/shoeSizeText"
             app:layout_constraintEnd_toEndOf="@+id/shoeNameLabel" />
-
+        <!-- Simple code that seems to permit two-way data binding for double type see below:
+        https://stackoverflow.com/questions/39445482/two-way-data-binding-with-double-value-in-edittext-->
         <EditText
             android:id="@+id/shoeSizeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Enter shoe size"
+            android:hint="@string/enter_shoe_size"
+            android:text="@={`` + sharedViewModel.shoeSize}"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +73,7 @@
             android:id="@+id/companyLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Company:"
+            android:text="@string/company"
             android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/companyText"
             app:layout_constraintEnd_toEndOf="@+id/shoeSizeLabel" />
@@ -76,8 +84,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Enter company"
+            android:hint="@string/enter_company"
             android:textSize="24sp"
+            android:text="@={sharedViewModel.shoeCompany}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/companyLabel"
@@ -88,7 +97,7 @@
             android:id="@+id/descriptionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description:"
+            android:text="@string/description"
             android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/descriptionText"
             app:layout_constraintEnd_toEndOf="@+id/companyLabel" />
@@ -99,8 +108,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Enter description"
+            android:hint="@string/enter_description"
             android:textSize="24sp"
+            android:text="@={sharedViewModel.shoeDescription}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/descriptionLabel"
@@ -111,7 +121,7 @@
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="@string/cancel"
             app:layout_constraintBaseline_toBaselineOf="@+id/saveButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.24"
@@ -122,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Save"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.77"

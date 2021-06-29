@@ -1,36 +1,38 @@
 package com.udacity.shoestore.models.shared
 
+import android.app.Activity
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
-import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.solver.state.State
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.udacity.shoestore.R
+import com.udacity.shoestore.databinding.ActivityMainBinding.inflate
 import com.udacity.shoestore.databinding.ListingFragmentBinding
-import com.udacity.shoestore.models.Shoe
 import kotlinx.android.synthetic.main.common_list.view.*
-import kotlinx.android.synthetic.main.floating_button.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.common_list2.view.*
+import kotlin.system.exitProcess
 
 
 class ListingFragment : Fragment() {
 
     private lateinit var binding: ListingFragmentBinding
     private lateinit var lastView: View
-    private lateinit var buttonView: View
-    private lateinit var nextTextView: TextView
-    //private lateinit var newBinding:
-   // private lateinit var sharedBinding: NewViewBinding
+
+    // as suggested, using "activityViewModels() so that listingFragment and detailFragment can transfer data
     private val model: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -45,163 +47,106 @@ class ListingFragment : Fragment() {
             false
         )
         setHasOptionsMenu(true)
-        //setDisplayHomeAsUpEnabled(false)
-        //toolbar.navigationIcon(null)
-        Log.i("onLinearLayout", "insideCreateView")
-        // getActivity()?.getActionBar()?.setDisplayHomeAsUpEnabled(false)
-        // ((ActionBarActivity)getActivity()).getSupportActionBar()
         // https://stackoverflow.com/questions/54893039/get-actionbar-inside-fragment-using-androidx
         // This gets and hides the "up button" on the action bar so that user cannot navigate back:
         val bar = (activity as AppCompatActivity).supportActionBar
         bar?.setDisplayHomeAsUpEnabled(false)
-        if (bar == null) {
-            Log.i("GetActivity", "bar is null")
-        }
-      //  binding.fab.setOnClickListener {
-     //       view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
-    //    }
-       // binding.myTextView.text = model.name.value.toString()
-
-        // add some stuff:
-     //   newBinding.newField.text = "Testing, Testing"
-        // end of some stuff:
+        binding.setLifecycleOwner(this)
+        // The code below causes app to exit upon back button press, obtained from:
+        // https://stackoverflow.com/questions/55074497/how-to-add-onbackpressedcallback-to-fragment
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    (activity as AppCompatActivity).finish()
+                    // can also consider finishAffinity() or System.exit(0)
+                }
+            }
+        )
         return binding.root
     }
 
-
-
     override fun onResume() {
         super.onResume()
-        /*
-        binding.myTextView.text = model.name.value.toString()
-        binding.mySizeView.text = model.size.value.toString()
-        binding.myCompanyView.text = model.company.value.toString()
-        binding.myDescriptionView.text = model.description.value.toString()
-        Log.i("onStart", model.name.value.toString())
-        */
-        val ll: LinearLayout = LinearLayout(this.context)
-        val lmain: LinearLayout = LinearLayout(this.context)
-        ll.setLayoutParams(
-            ViewGroup.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-        )
-        // LayoutInflater.from(this.context).inflate(R.layout.common_list, null)
 
-      //  val myLayout = LayoutInflater.from(context).inflate(R.layout.common_list, null)
-        /*
-        val tv: TextView = TextView(this.context)
-        tv.setText("Testing, Testing")
-        tv.height=100
-        tv.width=100
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36f)
-        getView()?.invalidate()
-        ll.addView(tv)
-        lmain.addView(ll)
-        myLayout.new_field.text = "TESTING, TESTING"
-        */
+      //  val inflater: LayoutInflater = LayoutInflater.from(context)
+        val inflater: LayoutInflater = getLayoutInflater()
+        val view: View = inflater.inflate(R.layout.common_list2, null)
+        val main: ViewGroup = binding.insertionPoint
+
+        /* NEWLY DELETED:
         (view as? ViewGroup)?.let {
-                lastView = View.inflate(context, R.layout.common_list2, it)
-          //  Log.i("onResume", myLayout.myLinearLayout.toString())
-            // lastView.new_field.text="Charles Stimler"
-            var textView:TextView = TextView(context)
-            textView.text = "Charlie"
-            textView.height = 100
-            textView.width = 100
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
-          //  getView()?.invalidate()
-            lastView.myLinearLayout.addView(textView)
-
-            //scroll.setBackgroundColor(getResources().getColor(android.R.color.transparent, null)
-           // if (lastView.getParent() == null) {
-            //    scroll.addView(lastView)
-          //  }
-            // setContentView(ll)
+            lastView = View.inflate(context, R.layout.common_list2, it)
         }
-  //      (view as? ViewGroup)?.let {
-   //        buttonView = View.inflate(context, R.layout.floating_button, it)
-  //      }
-        val scroll: ScrollView = ScrollView(context)
-        scroll.setLayoutParams(
-            ViewGroup.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-            )
-        )
-        // spacer for top navbar:
-        var textView: TextView = TextView(context)
-        textView.text=""
-        textView.height = 100
-        textView.width = 100
-        lastView.myLinearLayout.addView(textView)
-        for (shoe in model.listOfShoes) {
 
+ */
+        fun addField(text: String, height: Int = 100, width: Int = 1000) {
             var textView: TextView = TextView(context)
-            textView.text = "Name: " + shoe.name
-            textView.height = 100
-            textView.width = 1000
+            textView.text = text
+            textView.height = height
+            textView.width = width
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
-            // getView()?.invalidate()
-            lastView.myLinearLayout.addView(textView)
-            var textView2: TextView = TextView(context)
-            textView2.text = "Size: " + shoe.size.toString()
-            textView2.height = 100
-            textView2.width = 1000
-            textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
-            lastView.myLinearLayout.addView(textView2)
-
-            var textView3: TextView = TextView(context)
-            textView3.text=""
-            textView3.height = 100
-            textView3.width = 100
-            lastView.myLinearLayout.addView(textView3)
+            main.addView(textView)
         }
 
+        // spacer for top navbar:
+        addField("")
+        // iterate over all the shoes stored in the model and print info to Listing View:
+        for (shoe in model.listOfShoes) {
+            // Name field:
+            addField("Name: " + shoe.name)
+            // Size field:
+            addField("Size: " + shoe.size.toString())
+            // Company field:
+            addField("Company: " + shoe.company.toString())
+            // Description field:
+            addField("Description: " + shoe.description.toString())
+            // spacer between Shoes in list:
+            addField("")
+        }
+        // setup floatingactionbutton migration:
+        val actionButton = binding.fab
+        actionButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
+        }
+
+/* NEWLY DELETED:
         var actionButton: FloatingActionButton = FloatingActionButton(context)
         actionButton.setImageResource(R.drawable.ic_add)
         lastView.myLinearLayout.addView(actionButton)
-    //    buttonView.fab2.setOnClickListener {
-     //           view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
-    //    }
-       actionButton.setOnClickListener {
-                view: View -> view.findNavController().navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
+
+        actionButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(ListingFragmentDirections.actionListingFragmentToDetailFragment())
         }
-        /*
-        if(lastView.getParent() != null) {
-                if (lastView.getParent() is ViewGroup) {
-            (lastView.getParent()).removeView(lastView)
-                }
-        }
-        */
-
-    }
-
-    fun destroyItem(container: ViewGroup, position: Int, `object`: Any?) {
-        container.removeView(`object` as View?)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.logout_menu, menu)
+*/
         }
 
-    override fun onOptionsItemSelected(item: MenuItem) : Boolean {
-        when (item.itemId) {
-            R.id.logout -> moveBack()
+        // Create options menu:
+        override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+            super.onCreateOptionsMenu(menu, inflater)
+            inflater.inflate(R.menu.logout_menu, menu)
         }
-        return super.onOptionsItemSelected(item)
+
+        // When the option is chosen migrate to the Login Fragment
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.logout -> moveBack()
+            }
+            return super.onOptionsItemSelected(item)
+        }
+
+        // migrates the user back to the Login Fragment
+        fun moveBack() {
+            findNavController().navigate(ListingFragmentDirections.actionListingFragmentToLoginFragment())
+        }
     }
 
-    fun moveBack() {
-                findNavController().navigate(ListingFragmentDirections.actionListingFragmentToLoginFragment())
-    }
 
-    fun makeShoe() {
-      var nextShoe = Shoe(model.name.value!!, model.size.value!!, model.company.value!!, model.description.value!! )
-      //  binding.myTextView.setText(model.name.value!!)
-    }
 
-}
+
+
+
 
 

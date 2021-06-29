@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- I used constraint layout because it was very visually appealing and I had precise control
+over the vertical proportional spacing of the lines and it centered well -->
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +15,7 @@
         android:id="@+id/welcomeText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to the Shoe Store App!!"
+        android:text="@string/welcome1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +25,7 @@
         android:id="@+id/welcomeText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="It's great to have you here!"
+        android:text="@string/welcome2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -34,7 +37,7 @@
         android:id="@+id/fromWelcomeToInstructionsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Instructions ->"
+        android:text="@string/go_to_instructions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

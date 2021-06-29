@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- I used the constraint layout because it did such a good job of centering text and proportionally
+    distribute the textviews and editviews -->
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +15,7 @@
         android:id="@+id/instructionsText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="These are the instructions that you should follow: \n  1) First keep on track"
+        android:text="@string/instructions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +25,7 @@
         android:id="@+id/instructionsText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Here are some more instructions:"
+        android:text="@string/instructions_more"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +35,7 @@
         android:id="@+id/fromInstructionsToListingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Listing ->"
+        android:text="@string/listing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

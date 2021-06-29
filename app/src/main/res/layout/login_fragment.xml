@@ -4,76 +4,79 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!-- I used constraint layout because it was very visually appealing and I had precise control
+over the vertical proportional spacing of the lines and it centered well -->
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:navGraph="@navigation/navigation"
-    app:defaultNavHost="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation">
 
-    <TextView
-        android:id="@+id/emailLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please enter your email address below:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        <TextView
+            android:id="@+id/emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
 
-    <EditText
-        android:id="@+id/emailInput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLabel"
-        app:layout_constraintVertical_bias="0.1" />
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLabel"
+            app:layout_constraintVertical_bias="0.1" />
 
-    <TextView
-        android:id="@+id/passwordLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please enter your password below:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput"
-        app:layout_constraintVertical_bias="0.26" />
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_password"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailInput"
+            app:layout_constraintVertical_bias="0.26" />
 
-    <EditText
-        android:id="@+id/passwordInput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:contentDescription="My Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
-        app:layout_constraintVertical_bias="0.17000002" />
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/my_email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
+            app:layout_constraintVertical_bias="0.17000002" />
 
-    <Button
-        android:id="@+id/oldLoginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Existing Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
-        app:layout_constraintVertical_bias="0.18" />
+        <Button
+            android:id="@+id/oldLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/existing_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordInput"
+            app:layout_constraintVertical_bias="0.18" />
 
-    <Button
-        android:id="@+id/newLoginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create A New Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/oldLoginButton"
-        app:layout_constraintVertical_bias="0.41000003" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/newLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_a_new_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oldLoginButton"
+            app:layout_constraintVertical_bias="0.41000003" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

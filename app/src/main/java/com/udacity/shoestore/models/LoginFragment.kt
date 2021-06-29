@@ -31,6 +31,8 @@ class LoginFragment : Fragment() {
         binding.newLoginButton.setOnClickListener {
             view: View -> view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
         }
+
+      //  parentFragmentManager.beginTransaction().addToBackStack("login").commit()
         return binding.root
     }
 }
